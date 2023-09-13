@@ -8,10 +8,14 @@
 </head>
 <body>
     <header>
-        <h1>Desenvolvimento Web</h1>
-        <h2>Histórico</h2>
+        <h1> Desenvolvimento Web </h1>
+        <h2> Histórico </h2>
     </header>
-    <main></main>
+
+    <main>
+        
+    </main>
+
     <footer>
         <p>&copy;2023 - GC&AT</p>
     </footer>
