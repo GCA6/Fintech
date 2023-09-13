@@ -16,6 +16,8 @@
     </header>
     <main>
         <?php
+        require_once 'classes/autoloader.class.php';
+        R::setup('mysql:host=127.0.0.1;dbname=fintech', 'root', '');
 
 
         if (
@@ -76,8 +78,21 @@
             // }
             // echo '</table>';
         } else {
-            echo '<p>Por favor, preencha o formulário de simulação corretamente.</p>';
+            echo '<p>Preencha o formulário de simulação corretamente.</p>';
         }
+        $s = R::dispense('simulacao');
+
+        $s->cliente = $cliente;
+        $s->aporte_inicial = number_format($aporte_inicial, 2, '.', '');
+        $s->aporte_mensal = number_format($aporte_mensal, 2, '.', '');
+        $s->rendimento = number_format($rendimento, 2, '.', '');
+        $s->periodo = $periodo;
+
+        $id = R::store($s);
+        //adicionar um feedback ao usuário a respeito de sob qual id foi salva a simulação;
+
+
+        R::close();
         ?>
 
         <a class="icon_home" href="index.html"><i class="uil uil-estate"></i></a>
