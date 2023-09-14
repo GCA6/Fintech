@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
     <title>Fintech - Simulação de Investimento</title>
 </head>
 
@@ -36,11 +38,6 @@
 
 
 
-            // $meses = [];
-            // $aplicacao = [];
-            // $rendimento_total = [];
-            // $total = [];
-
             $valor_final = $aporte_inicial;
             echo '<table>';
             echo '<tr><th>Mês</th><th>Aplicação (R$)</th><th>Rendimento (R$)</th><th>Total (R$)</th></tr>';
@@ -59,24 +56,13 @@
                     
                 }
                 
-                
-
-                // $meses[] = $i;
-                // $aplicacao[] = number_format($aporte_mensal, 2, ',', '.');
-                // $rendimento_total[] = number_format($rendimento_mes, 2, ',', '.');
-                // $total[] = number_format($valor_final, 2, ',', '.');
 
                 echo "<tr><td>$i</td><td>$aplicacao</td><td>$rendimento_mes</td><td>$valor_final</td></tr>";
             }
             echo '</table>';
 
 
-            // echo '<table>';
-            // echo '<tr><th>Mês</th><th>Aplicação (R$)</th><th>Rendimento (R$)</th><th>Total (R$)</th></tr>';
-            // for ($i = 0; $i < $periodo; $i++) {
-            //     echo "<tr><td>{$meses[$i]}</td><td>{$aplicacao[$i]}</td><td>{$rendimento_total[$i]}</td><td>{$total[$i]}</td></tr>";
-            // }
-            // echo '</table>';
+   
         } else {
             echo '<p>Preencha o formulário de simulação corretamente.</p>';
         }
@@ -87,9 +73,11 @@
         $s->aporte_mensal = number_format($aporte_mensal, 2, '.', '');
         $s->rendimento = number_format($rendimento, 2, '.', '');
         $s->periodo = $periodo;
+        $s = Util::rendimento($aporte_inicial, $aporte_mensal, $rendimento, $periodo);
 
         $id = R::store($s);
-        //adicionar um feedback ao usuário a respeito de sob qual id foi salva a simulação;
+        $feedback_message = "A simulação foi salva sob o ID: $id";
+
 
 
         R::close();
